@@ -1,5 +1,5 @@
-import type {NextPage} from 'next'
-import Head from 'next/head'
+import type {NextPage} from 'next';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   return (
@@ -7,18 +7,16 @@ const Home: NextPage = () => {
       <Head>
         <title>Twitter clone</title>
       </Head>
-        <main>
-            {/*sidebar*/}
+      <main>
+        {/*sidebar*/}
 
-            {/*feed*/}
-            {/*widget*/}
-        </main>
-
+        {/*feed*/}
+        {/*widget*/}
+      </main>
 
       <h1>Twitter Clone</h1>
-
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
