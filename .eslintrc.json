@@ -19,7 +19,8 @@
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:@next/next/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 2018,
