@@ -38,6 +38,7 @@
     "@typescript-eslint/prefer-interface": 0,
     "@typescript-eslint/no-empty-interface": 1,
     "@typescript-eslint/consistent-type-definitions": 1,
+    "react/react-in-jsx-scope": "off",
     "@typescript-eslint/naming-convention": [
       1,
       {
