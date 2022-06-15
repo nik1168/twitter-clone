@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         </main>
 
 
-      <h1>Hey Nik</h1>
+      <h1>Twitter Clone</h1>
 
     </div>
   )
