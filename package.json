@@ -44,7 +44,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn run coverage",
+      "pre-push": "yarn run test",
       "pre-commit": "yarn run typecheck && lint-staged"
     }
   },
