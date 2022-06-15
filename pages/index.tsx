@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         {/*feed*/}
         {/*widget*/}
       </main>
-
+      <h1>Hey there</h1>
       <h1>Twitter Clone</h1>
     </div>
   );
