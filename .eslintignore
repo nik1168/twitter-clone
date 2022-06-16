@@ -5,3 +5,4 @@ ios
 types.d.ts
 *.generated.ts
 *.config.js
+*.json

@@ -16,8 +16,8 @@
     "incremental": true,
     "noUnusedLocals": true,
     "importHelpers": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",".eslintrc.js"],
-  "exclude": ["node_modules","jest.config.js","tmp"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".eslintrc.js"],
+  "exclude": ["node_modules", "jest.config.js", "tmp", "package.json"]
 }
