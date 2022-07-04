@@ -6,7 +6,7 @@ import Home from '../pages/index';
 
 describe('Home', () => {
   it('renders a heading', () => {
-    const component = render(<Home />);
+    const component = render(<Home tweets={[]} />);
 
     expect(component).toBeTruthy();
   });
