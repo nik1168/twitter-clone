@@ -6,7 +6,11 @@ import Feed from '../components/feed/Feed';
 import SideBar from '../components/side-bar/SideBar';
 import Widgets from '../components/widgets/Widgets';
 import {fetchTweets} from '../lib/fetchTweets';
-import {IndexProps} from './typings';
+import {Tweet} from '../typings';
+
+export interface IndexProps {
+  tweets: Tweet[];
+}
 
 const Home: FC<IndexProps> = (): JSX.Element => {
   return (
