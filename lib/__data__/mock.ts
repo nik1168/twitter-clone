@@ -18,8 +18,16 @@ export const getMockTweet = (
   username: string,
   text: string,
   blockTweet: boolean,
+  image = '',
 ): Tweet => {
-  return {...mockTweet, _id: id, username, text, blockTweet};
+  return {
+    ...mockTweet,
+    _id: id,
+    username,
+    text,
+    blockTweet,
+    profileImg: image,
+  };
 };
 
 export const mockTweets: Tweet[] = [

@@ -20,4 +20,24 @@ describe('Tweet', () => {
     expect(text).toBeInTheDocument();
     expect(username).toBeInTheDocument();
   });
+
+  it('renders tweet with image', () => {
+    render(
+      <Tweet
+        tweet={getMockTweet(
+          '123',
+          'nik1168',
+          'This is a mocked tweet',
+          false,
+          'https://pbs.twimg.com/media/FR8dfYmXIAATrhS?format=jpg&name=medium',
+        )}
+      />,
+    );
+
+    const text = screen.getByText('This is a mocked tweet');
+    const username = screen.getByText('nik1168');
+
+    expect(text).toBeInTheDocument();
+    expect(username).toBeInTheDocument();
+  });
 });
