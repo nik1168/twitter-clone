@@ -18,7 +18,7 @@ export const getMockTweet = (
   username: string,
   text: string,
   blockTweet: boolean,
-  image = '',
+  image: string | undefined,
 ): Tweet => {
   return {
     ...mockTweet,
@@ -26,12 +26,12 @@ export const getMockTweet = (
     username,
     text,
     blockTweet,
-    profileImg: image,
+    image,
   };
 };
 
 export const mockTweets: Tweet[] = [
-  getMockTweet('1', 'nik1168', 'nik', false),
-  getMockTweet('2', 'nik1168', 'niko', false),
-  getMockTweet('3', 'nik1168', 'tweet 3', false),
+  getMockTweet('1', 'nik1168', 'nik', false, undefined),
+  getMockTweet('2', 'nik1168', 'niko', false, undefined),
+  getMockTweet('3', 'nik1168', 'tweet 3', false, undefined),
 ];

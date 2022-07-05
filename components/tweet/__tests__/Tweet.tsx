@@ -10,7 +10,13 @@ describe('Tweet', () => {
   it('renders component', () => {
     render(
       <Tweet
-        tweet={getMockTweet('123', 'nik1168', 'This is a mocked tweet', false)}
+        tweet={getMockTweet(
+          '123',
+          'nik1168',
+          'This is a mocked tweet',
+          false,
+          undefined,
+        )}
       />,
     );
 
