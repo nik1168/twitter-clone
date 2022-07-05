@@ -12,7 +12,7 @@ export interface IndexProps {
   tweets: Tweet[];
 }
 
-const Home: FC<IndexProps> = (): JSX.Element => {
+const Home: FC<IndexProps> = ({tweets}): JSX.Element => {
   return (
     <div className="mx-auto lg:max-w-6xl max-h-screen overflow-hidden">
       <Head>
@@ -20,7 +20,7 @@ const Home: FC<IndexProps> = (): JSX.Element => {
       </Head>
       <main className="grid grid-cols-9">
         <SideBar />
-        <Feed />
+        <Feed tweets={tweets} />
         <Widgets />
       </main>
     </div>

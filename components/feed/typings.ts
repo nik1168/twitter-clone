@@ -1,3 +1,5 @@
+import {Tweet} from '../../typings';
+
 export interface FeedProps {
-  title?: string;
+  tweets: Tweet[];
 }
