@@ -1,3 +1,5 @@
+import fetch from 'cross-fetch';
+
 import {Tweet} from '../typings';
 import {BASE_URL} from './constants';
 

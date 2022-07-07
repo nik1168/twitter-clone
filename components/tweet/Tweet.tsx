@@ -4,7 +4,7 @@ import {
   SwitchHorizontalIcon,
   UploadIcon,
 } from '@heroicons/react/outline';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import TimeAgo from 'react-timeago';
 
 import {fetchComments} from '../../lib/fetchComments';
@@ -25,15 +25,15 @@ const TweetActionIcon: FC<{children: React.ReactNode}> = ({
 const Tweet: FC<TweetProps> = ({tweet}): JSX.Element => {
   const [comments, setComments] = useState<Comment[] | null>([]);
 
-  const refreshComments = async () => {
+  const refreshComments = useCallback(async () => {
     const commentsList = await fetchComments(tweet._id);
 
     setComments(commentsList);
-  };
+  }, [tweet._id]);
 
   useEffect(() => {
     refreshComments();
-  }, []);
+  }, [refreshComments]);
 
   return (
     <div className="flex flex-col space-x-3 border-y p-5 border-gray-100">
