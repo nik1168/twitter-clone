@@ -18,7 +18,8 @@ export interface CommentBody {
   commentId: string;
   tweetId: string;
   username: string;
-  profileImage: string;
+  profileImg: string;
+  comment: string;
 }
 
 export interface Comment extends CommentBody {
