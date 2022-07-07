@@ -1,6 +1,7 @@
 import type {GetServerSideProps} from 'next';
 import Head from 'next/head';
 import {FC} from 'react';
+import {Toaster} from 'react-hot-toast';
 
 import Feed from '../components/feed/Feed';
 import SideBar from '../components/side-bar/SideBar';
@@ -18,6 +19,7 @@ const Home: FC<IndexProps> = ({tweets}): JSX.Element => {
       <Head>
         <title>Twitter clone</title>
       </Head>
+      <Toaster />
       <main className="grid grid-cols-9">
         <SideBar />
         <Feed tweets={tweets} />
