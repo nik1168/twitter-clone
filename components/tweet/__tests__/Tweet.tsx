@@ -1,12 +1,27 @@
 import '@testing-library/jest-dom';
 
 import {render, screen} from '@testing-library/react';
+import {Session} from 'next-auth';
+import {useSession} from 'next-auth/react';
 import React from 'react';
 
 import {getMockTweet} from '../../../lib/__data__/mock';
 import Tweet from '../Tweet';
 
+jest.mock('next-auth/react');
+
 describe('Tweet', () => {
+  beforeEach(() => {
+    const mockSession: Session = {
+      expires: '1',
+      user: {email: 'a', name: 'Delta', image: 'c'},
+    };
+
+    (useSession as jest.Mock).mockReturnValueOnce([mockSession, false]);
+  });
+  afterAll(() => {
+    jest.resetAllMocks();
+  });
   it('renders component', () => {
     render(
       <Tweet

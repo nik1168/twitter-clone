@@ -1,11 +1,26 @@
 import '@testing-library/jest-dom';
 
 import {fireEvent, render, screen} from '@testing-library/react';
+import {Session} from 'next-auth';
+import {useSession} from 'next-auth/react';
 import React from 'react';
 
 import TweetBox from '../TweetBox';
 
+jest.mock('next-auth/react');
+
 describe('TweetBox', () => {
+  beforeEach(() => {
+    const mockSession: Session = {
+      expires: '1',
+      user: {email: 'a', name: 'Delta', image: 'c'},
+    };
+
+    (useSession as jest.Mock).mockReturnValue({data: mockSession});
+  });
+  afterAll(() => {
+    jest.resetAllMocks();
+  });
   it('renders component', () => {
     render(<TweetBox />);
 

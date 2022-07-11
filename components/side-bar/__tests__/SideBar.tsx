@@ -1,8 +1,25 @@
+import '@testing-library/jest-dom';
+
 import {render} from '@testing-library/react';
+import {Session} from 'next-auth';
+import {useSession} from 'next-auth/react';
 
 import SideBar from '../SideBar';
 
+jest.mock('next-auth/react');
+
 describe('SideBar', () => {
+  beforeEach(() => {
+    const mockSession: Session = {
+      expires: '1',
+      user: {email: 'a', name: 'Delta', image: 'c'},
+    };
+
+    (useSession as jest.Mock).mockReturnValueOnce([mockSession, false]);
+  });
+  afterAll(() => {
+    jest.resetAllMocks();
+  });
   it('renders component', () => {
     const component = render(<SideBar />);
 
