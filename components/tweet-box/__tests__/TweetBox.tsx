@@ -10,6 +10,8 @@ import TweetBox from '../TweetBox';
 jest.mock('next-auth/react');
 
 describe('TweetBox', () => {
+  const setTweets = jest.fn();
+
   beforeEach(() => {
     const mockSession: Session = {
       expires: '1',
@@ -22,7 +24,7 @@ describe('TweetBox', () => {
     jest.resetAllMocks();
   });
   it('renders component', () => {
-    render(<TweetBox />);
+    render(<TweetBox setTweets={setTweets} />);
 
     const title = screen.getByPlaceholderText("What's happening?");
 
@@ -30,7 +32,7 @@ describe('TweetBox', () => {
   });
 
   it('changes tweet text', () => {
-    render(<TweetBox />);
+    render(<TweetBox setTweets={setTweets} />);
     const text = 'Today is a great day!';
     const input = screen.getByPlaceholderText(
       "What's happening?",

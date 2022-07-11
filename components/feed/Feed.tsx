@@ -20,7 +20,7 @@ const Feed: FC<FeedProps> = ({tweets}): JSX.Element => {
   };
 
   return (
-    <div className="col-span-7 lg:col-span-5">
+    <div className="col-span-7 lg:col-span-5 border-x max-h-screen overflow-scroll scrollbar-hide">
       <div className="flex items-center justify-between">
         <h1 className="p-5 pb-0 text-xl font-bold">Home</h1>
         <RefreshIcon
@@ -28,7 +28,7 @@ const Feed: FC<FeedProps> = ({tweets}): JSX.Element => {
           onClick={handleRefresh}
         />
       </div>
-      <TweetBox />
+      <TweetBox setTweets={setTweetsList} />
       {/*Feed*/}
       <div>
         {tweetsList.map(element => {
