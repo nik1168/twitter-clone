@@ -4,11 +4,13 @@ import {
   SwitchHorizontalIcon,
   UploadIcon,
 } from '@heroicons/react/outline';
+import {useSession} from 'next-auth/react';
 import React, {FC, useCallback, useEffect, useState} from 'react';
+import {toast} from 'react-hot-toast';
 import TimeAgo from 'react-timeago';
 
 import {fetchComments} from '../../lib/fetchComments';
-import {Comment} from '../../typings';
+import {Comment, CommentBody} from '../../typings';
 import BaseIcon from '../base-icon/BaseIcon';
 import {TweetProps} from './typings';
 
@@ -24,6 +26,9 @@ const TweetActionIcon: FC<{children: React.ReactNode}> = ({
 
 const Tweet: FC<TweetProps> = ({tweet}): JSX.Element => {
   const [comments, setComments] = useState<Comment[] | null>([]);
+  const [commentBoxVisible, setCommentBoxVisible] = useState<boolean>(false);
+  const [input, setInput] = useState('');
+  const {data: session} = useSession();
 
   const refreshComments = useCallback(async () => {
     const commentsList = await fetchComments(tweet._id);
@@ -34,6 +39,36 @@ const Tweet: FC<TweetProps> = ({tweet}): JSX.Element => {
   useEffect(() => {
     refreshComments();
   }, [refreshComments]);
+
+  const postComment = async (): Promise<void> => {
+    const commentBody: CommentBody = {
+      comment: input,
+      username: session?.user?.name ?? 'Unknown User',
+      profileImg: session?.user?.image ?? '',
+      tweetId: tweet._id,
+    };
+    const result = await fetch(`/api/addComments`, {
+      body: JSON.stringify(commentBody),
+      method: 'POST',
+    });
+
+    await result.json();
+
+    await refreshComments();
+
+    toast('Comment Posted', {
+      icon: '🚀',
+    });
+
+    return;
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    postComment();
+    setInput('');
+    setCommentBoxVisible(false);
+  };
 
   return (
     <div className="flex flex-col space-x-3 border-y p-5 border-gray-100">
@@ -67,7 +102,15 @@ const Tweet: FC<TweetProps> = ({tweet}): JSX.Element => {
       </div>
       <div className="flex justify-between mt-5">
         <TweetActionIcon>
-          <ChatAlt2Icon className="h-5 w-5" />
+          <ChatAlt2Icon
+            className="h-5 w-5"
+            onClick={() => {
+              if (!session) {
+                return;
+              }
+              setCommentBoxVisible(!commentBoxVisible);
+            }}
+          />
           <p>{comments?.length}</p>
         </TweetActionIcon>
         <TweetActionIcon>
@@ -80,6 +123,26 @@ const Tweet: FC<TweetProps> = ({tweet}): JSX.Element => {
           <UploadIcon className="h-5 w-5" />
         </TweetActionIcon>
       </div>
+      {/*Comment Box Logic*/}
+      {commentBoxVisible ? (
+        <form onSubmit={handleSubmit} className="mt-3 flex space-x-3">
+          <input
+            value={input}
+            onChange={e => {
+              setInput(e.target.value);
+            }}
+            className="flex 1 rounded-lg bg-gray-100 p-2 outline-none"
+            type="text"
+            placeholder="Write a comment"
+          />
+          <button
+            className="text-twitter disabled:text-gray-200"
+            type="submit"
+            disabled={!input}>
+            Post
+          </button>
+        </form>
+      ) : null}
       {comments && comments?.length > 0 ? (
         <div className="my-2 mt-5 max-h-44 space-y-5 overflow-y-scroll border-t border-gray-100 p-5">
           {comments?.map((comment: Comment) => {

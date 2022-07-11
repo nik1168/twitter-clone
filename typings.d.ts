@@ -15,7 +15,7 @@ export interface Tweet extends TweetBody {
 }
 
 export interface CommentBody {
-  commentId: string;
+  commentId?: string;
   tweetId: string;
   username: string;
   profileImg: string;
