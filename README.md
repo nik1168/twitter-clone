@@ -31,6 +31,9 @@ yarn dev
 
 ## Demo
 
+Visit the following URL: 
+https://twitter-clone-black-five.vercel.app/
+
 https://drive.google.com/file/d/1CADTcVjETCT4Q0EurZGvLsfOvaINkP7q/view?usp=sharing
 
 ### Main Screen
