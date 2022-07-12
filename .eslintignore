@@ -1,0 +1,10 @@
+node_modules
+coverage
+android
+ios
+types.d.ts
+*.generated.ts
+*.config.js
+*.json
+sanity
+sanity.js
